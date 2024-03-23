@@ -1,12 +1,12 @@
 import { Box, Button, InputAdornment, TextField } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import { lightGreen } from '@mui/material/colors';
+import { styled } from "@mui/material/styles";
+import { lightGreen } from "@mui/material/colors";
 import { Send } from "@mui/icons-material";
-import DriveFileRenameOutlineIcon  from '@mui/icons-material/DriveFileRenameOutline';
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(lightGreen[700]),
-  backgroundColor: theme.palette.primary.light  ,
+  backgroundColor: theme.palette.primary.light,
   "&:hover": {
     backgroundColor: lightGreen[800],
   },
@@ -14,14 +14,18 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 const Create = () => {
   return (
-    <Box sx={{ width: {xs:"95%" , sm:"80%" ,md:"60%"} }} component={"form"}>
+    <Box sx={{ width: { xs: "95%", sm: "80%", md: "60%" } }} component={"form"}>
       <TextField
         fullWidth={true}
         color="success"
         label="With normal TextField"
-        sx={{ m:1 , ml:0}}
+        sx={{ m: 1, ml: 0 }}
         InputProps={{
-          startAdornment: <InputAdornment position="start"><DriveFileRenameOutlineIcon/> </InputAdornment>,
+          startAdornment: (
+            <InputAdornment position="start">
+              <DriveFileRenameOutlineIcon />{" "}
+            </InputAdornment>
+          ),
         }}
         variant="filled"
       />
@@ -30,7 +34,7 @@ const Create = () => {
         fullWidth={true}
         color="success"
         label="With normal TextField"
-        sx={{ m: 1 , ml:0}}
+        sx={{ m: 1, ml: 0 }}
         InputProps={{
           startAdornment: <InputAdornment position="start">$</InputAdornment>,
         }}
@@ -39,7 +43,21 @@ const Create = () => {
 
       {/* <Button variant="outlined">Outlined</Button> */}
 
-      <ColorButton variant="contained">Submit <Send sx={{mt:"-2px" , ml:"10px" , fontSize:"20px"}} /> </ColorButton>
+      <ColorButton
+        variant="contained"
+        onClick={() => {
+          fetch("http://localhost:3000/mydata", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify("kkk"),
+          })
+          
+        }}
+      >
+        Submit <Send sx={{ mt: "-2px", ml: "10px", fontSize: "20px" }} />{" "}
+      </ColorButton>
     </Box>
   );
 };
