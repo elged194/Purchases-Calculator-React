@@ -32,15 +32,16 @@ const UiDrawer = ({
   const theme = useTheme();
   const location = useLocation();
   const myListDrawer = [
-    { id:"1" , title: "Home", icon: <Home />, path: "/" },
-    { id:"2" , title: "Create", icon: <Create />, path: "/Create" },
-    { id:"3" , title: "Profile", icon: <Person />, path: "/Profile" },
-    { id:"4" , title: "Settings", icon: <Settings />, path: "/Settings" },
-    { id:"5" , title: "Logout", icon: <Logout />, path: "" },
+    { id: "1", title: "Home", icon: <Home />, path: "/" },
+    { id: "2", title: "Create", icon: <Create />, path: "/Create" },
+    { id: "3", title: "Profile", icon: <Person />, path: "/Profile" },
+    { id: "4", title: "Settings", icon: <Settings />, path: "/Settings" },
+    { id: "5", title: "Logout", icon: <Logout />, path: "" },
   ];
 
   return (
     <Drawer
+      component={"nav"}
       sx={{
         width: drawerWidth,
         flexShrink: 0,

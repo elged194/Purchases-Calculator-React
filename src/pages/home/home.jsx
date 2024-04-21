@@ -1,30 +1,56 @@
 import { Close } from "@mui/icons-material";
 import { Box, Paper, Typography, IconButton, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const theme = useTheme();
 
+  const [myData, setmyData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3100/mydata")
+      .then((response) => response.json())
+      .then((data) => setmyData(data));
+  }, []);
+
+  let subTotale = 0;
   return (
-    <Box sx={{width:"50%" ,}}>
-      <Paper elevation={3}  className="paper-items">
-        <Typography variant="h6"> GYM </Typography>
-        <Typography variant="h6"> 100$ </Typography>
+    <Box sx={{ width: "50%" }} component={"main"}>
 
-        <IconButton className="close-paper">
-          <Close  />
-        </IconButton>
-      </Paper>
+      {myData.map((e) => {
+        subTotale += e.prise;
+        return (
+          <Paper elevation={3} className="paper-items" key={e.id}>
+            <Typography variant="h6"> {e.title} </Typography>
+            <Typography variant="h6"> {e.prise}$ </Typography>
 
-      <Paper elevation={3}  className="paper-items">
-        <Typography variant="h6"> GYM </Typography>
-        <Typography variant="h6"> 100$ </Typography>
+            <IconButton
+              className="close-paper"
+              onClick={() => {
+                fetch(`http://localhost:3100/mydata/${e.id}`, {
+                  method: "DELETE",
+                });
+                const newArr = myData.filter((item) => {
+                  return item.id !== e.id;
+                });
+                setmyData(newArr);
+              }}
+            >
+              <Close />
+            </IconButton>
+          </Paper>
+        );
+      })}
 
-        <IconButton className="close-paper">
-          <Close  />
-        </IconButton>
-      </Paper>
-
-      <Typography variant="h4" color={theme.palette.favColor.main}>hhhshh</Typography>
+      <Typography
+        mt="15px"
+        textAlign="center"
+        variant="h4"
+        color={theme.palette.favColor.main}
+      >
+        Sub Totale {subTotale}$
+      </Typography>
+      
     </Box>
   );
 };

@@ -11,6 +11,7 @@ import {
 const Appbar = ({ drawerWidth , setOurMenuo , setDraerType}) => {
   return (
     <AppBar
+    component={"header"}
       position="fixed"
       sx={{
         width: { md: `calc(100% - ${drawerWidth}px)` },

@@ -48,15 +48,17 @@ const Root = () => {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
 
-        <Appbar drawerWidth={drawerWidth} setOurMenuo={setOurMenuo} setDraerType={setDraerType}/>
+        <Appbar {...{ drawerWidth, setOurMenuo, setDraerType }} />
 
         <UiDrawer
-          drawerWidth={drawerWidth}
-          setmyMode={setmyMode}
-          OurMenuo={OurMenuo}
-          DraerType={DraerType}
-          setOurMenuo={setOurMenuo}
-          setDraerType={setDraerType}
+          {...{
+            drawerWidth,
+            setmyMode,
+            OurMenuo,
+            DraerType,
+            setOurMenuo,
+            setDraerType,
+          }}
         />
 
         <Box
