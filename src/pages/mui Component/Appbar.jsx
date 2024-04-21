@@ -42,7 +42,7 @@ const Appbar = ({ drawerWidth , setOurMenuo , setDraerType}) => {
           underline="none"
           href="/"
         >
-          my title
+          My Purchases
         </Link>
 
         <Typography variant="body1" color="inherit" mr={1}>

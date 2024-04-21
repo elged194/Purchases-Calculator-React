@@ -21,7 +21,7 @@ const Home = () => {
         subTotale += e.prise;
         return (
           <Paper elevation={3} className="paper-items" key={e.id}>
-            <Typography variant="h6"> {e.title} </Typography>
+            <Typography variant="h6"> {e.title.toUpperCase()} </Typography>
             <Typography variant="h6"> {e.prise}$ </Typography>
 
             <IconButton
@@ -50,7 +50,7 @@ const Home = () => {
       >
         Sub Totale {subTotale}$
       </Typography>
-      
+
     </Box>
   );
 };
